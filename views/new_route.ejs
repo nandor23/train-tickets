@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Form</title>
+    <link rel="stylesheet" href="/css/new_route.css"/>
+    <script src="/js/new_route.js"></script>
+    <%- include('partials/head.ejs') %>
+</head>
+
+<body class="bg-light">
+    <%- include('partials/navbar.ejs') %>
+
+    <div id="form-container" class="card container justify-content-center">
+        <h1 class="card-title">Add a new route</h1>
+        <form action="/new-route" method="post" onsubmit="return validate();" id="new-route-form" class="card-body">
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="starting-point">From</label>
+                    <input type="text" class="form-control" id="starting-point" name="starting-point" onblur="validateStartPoint(this.value)">
+                    <p id="invalid-start-point" class="invalid-field"></p>
+                </div>
+                <div class="col-sm-6">
+                    <label for="destination">To</label>
+                    <input type="text" class="form-control" id="destination" name="destination" onblur="validateEndPoint(this.value)">
+                    <p id="invalid-end-point" class="invalid-field"></p>
+                </div>
+            </div>
+            <div class="form-group row"> 
+                <div class="col-sm-6">
+                    <label for="departure-day">Day</label>
+                    <select id="departure-day" class="form-select" name="departure-day" onblur="validateDay(this.value)">
+                        <option value="" disabled selected hidden></option>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                        <option vlaue="Sunday">Sunday</option>
+                    </select>
+                    <p id="invalid-day" class="invalid-field"></p>
+                </div>
+                <div class="col-sm-6">
+                    <label for="departure-time">Departure time</label>
+                    <input type="time" class="form-control" id="departure-time" name="departure-time" onblur="validateDepartureTime(this.value)">
+                    <p id="invalid-time" class="invalid-field"></p>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="arrival-time">Arrival time</label>
+                    <input type="time" class="form-control" id="arrival-time" name="arrival-time" onblur="validateArrivalTime(this.value)">
+                    <p id="invalid-arrival-time" class="invalid-field"></p>
+                </div>
+                <div class="col-sm-6">
+                    <label for="ticket-price">Price</label>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control" id="ticket-price" name="ticket-price" min="1" onblur="validatePrice(this.value)">
+                    </div>
+                    <p id="invalid-ticket-price" class="invalid-field"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-6">
+                    <label for="train-type">Train type</label>
+                    <select id="train-type" class="form-select" name="train-type" onblur="validateType(this.value)">
+                        <option value="" disabled selected hidden></option>
+                        <option value="Passenger">Passenger</option>
+                        <option value="Regional">Regional</option>
+                        <option value="High-Speed">High-Speed</option>
+                        <option value="Inter-City">Inter-City</option>
+                    </select>
+                    <p id="invalid-train-type" class="invalid-field"></p>
+                </div>
+            </div>
+            <% if (errorMessage !== 'undefined') { %>
+                <p id="error-message"><%=errorMessage%></p>
+            <% } %>
+            <hr class="my-4">
+            <div id="btn-container">
+                <button type="submit" id="submit-btn">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

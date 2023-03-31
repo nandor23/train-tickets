@@ -1,0 +1,67 @@
+#form-container {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 600px;
+}
+
+#registration-form .form-group:first-child {
+  padding-top: 30px;
+}
+
+#registration-form label {
+  font-size: 20px;
+  padding-bottom: 4px;
+}
+
+#btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+#sign-in-btn {
+  margin-top: -10px;
+  height: 50px;
+  width: 150px;
+  background-color: #0d6efd;
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+}
+
+.invalid-field {
+  font-size: 16px;
+  color: #ff3860;
+}
+
+#error-message {
+  font-weight: 500;
+  margin-top: -15px;
+  text-align: center;
+  color: #ff3860;
+}
+
+.form-group {
+  justify-content: center;
+}
+
+#register-text {
+  text-align: center;
+  padding-top: 10px;
+  font-size: 18px;
+}
+
+#register-text a {
+  text-decoration: none;
+}
+
+.card-title {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+@media screen and (max-width: 576px) {
+  #form-container {
+      width: 100%;
+  }
+}

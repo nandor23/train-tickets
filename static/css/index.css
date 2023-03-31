@@ -1,0 +1,279 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+tbody li {
+    list-style-type: none;
+}
+
+#form-container {
+    margin-top: 40px;
+    margin-bottom: 100px;
+    width: 500px;
+}
+
+#form-container h1 {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: -20px;
+}
+
+#guest-form .form-group {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#guest-form .form-group:first-child {
+    padding-top: 30px;
+}
+
+#guest-form .form-group:not(:first-child) {
+    padding-top: 20px;
+}
+
+#guest-form label {
+    font-size: 20px;
+    padding-bottom: 4px;
+}
+
+#search-button {
+    margin-top: -10px;
+    display: flex;
+    height: 50px;
+    width: 150px;
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+#search-icon {
+    margin-left: 20px;
+    margin-right: 14px;
+    font-size: 20px;
+}
+
+#search-text {
+    padding-right: 14px;
+}
+
+#search-icon, #search-text {
+    align-items: center;
+    color: white;
+    vertical-align: middle;
+    margin-top: 10px;
+}
+
+#search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.invalid-field {
+    font-size: 16px;
+    color: #ff3860;
+}
+
+#error-message {
+    font-size: 30px;
+    font-weight: 500;
+    padding-top: 20px;
+    text-align: center;
+    color: #ff3860;
+}
+
+.show-additional-information {
+    border: none;
+    background-color: #bcdfbd;
+    color: #388e3c;
+    border-radius: 8px;
+    height: 40px;
+    width: 120px;
+    font-size: 18px;
+}
+
+#container {
+    max-width: 1100px;
+}
+
+.additional-information {
+    display: none;
+    font-weight: 600;
+    color: black;
+    text-align: left !important;
+}
+
+.additional-information span {
+    color: #028002;
+    font-weight: 600;
+}
+
+.show-additional-information:hover {
+    box-shadow: 0 0 10px #028002;
+}
+
+@media screen and (max-width: 576px) {
+    #form-container {
+        width: 100%;
+    }
+}
+
+.departure-time, .arrival-time {
+    padding-left: 30px;
+}
+
+.arrival-time {
+    padding-top: 120px;
+}
+
+.departure-time:not(:first-child) {
+    padding-top: 50px;
+}
+
+
+.solid-dot:first-child {
+    margin-top: -2px;
+}
+
+.station-container {
+    display: flex;
+}
+
+.fa-circle {
+    font-size: 12px !important;
+    color: #0d6efd;
+    padding-left: 10px;
+    padding-right: 10px;
+    z-index: 10;
+}
+
+.vertical-line-container {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.vertical-line {
+    background-color: #0d6efd;
+    width: 2px;
+    height: 162px;
+    margin-left: 15px;
+    margin-top: -10px;
+    margin-bottom: -15px;
+}
+
+.vertical-line-2 {
+    height: 96px;
+    margin-left: 15px;
+    margin-top: -10px;
+    margin-bottom: -20px;
+    border-left: dashed 2px #0d6efd;
+}
+
+.place-container * {
+    color: black !important;
+}
+
+.place-container a span {
+    color: #0d6efd !important;
+}
+
+.info-container {
+    height: 120px;
+    padding-left: 30px;
+    font-size: 18px;
+    background-color: #eff1f3;
+    border-radius: 8px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    width: 310px;
+}
+
+.info-container-2 {
+    height: 50px;
+    padding-left: 30px;
+    font-size: 18px;
+    background-color: #eff1f3;
+    border-radius: 8px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    width: 310px;
+    display: flex;
+}
+
+.fa-person-walking {
+    padding-top: 15px;
+    font-size: 22px;
+}
+
+.transfer-text {
+    padding-top: 12px;
+    padding-left: 10px;
+}
+
+.route-id {
+    padding-top: 16px;
+}
+
+.elapsed-time-container {
+    margin-top: -10px;
+    display: flex;
+}
+
+.elapsed-time {
+    padding-left: 5px;
+    margin-top: -6px;
+}
+
+.summary-container {
+    height: 170px;
+    width: 380px;
+    background-color: #eff1f3;
+    border-radius: 8px;
+    margin-left: 180px;
+    margin-top: 10px;
+    display: flex;
+}
+
+.bi-info-circle {
+    color: #0d6efd;
+}
+
+.summary-text {
+    display: flex;
+    padding-top: 10px;
+    padding-left: 20px;
+}
+
+.summary-text p {
+    padding-left: 10px;
+}
+
+.total-price, .total-travel-time, .total-transfer {
+    padding-left: 25px;
+    font-size: 18px;
+}
+
+.total-travel-time, .total-transfer {
+    margin-top: -18px;
+}
+
+.buy-ticket {
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #0d6efd;
+    border-radius: 10px;
+    height: 50px;
+    margin-left: 60px;
+    margin-top: 50px;
+    width: 120px;
+
+}

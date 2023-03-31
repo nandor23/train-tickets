@@ -1,0 +1,64 @@
+#message {
+  text-align: center;
+  padding-top: 40px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+#table-container {
+  margin-top: 30px;
+  margin-bottom: 50px;
+  border: solid #bdc3c7 1px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+table {
+  text-align: center !important;
+}
+
+.table-responsive {
+  max-height:1500px;
+}
+
+tr {
+  text-align: left !important;
+}
+
+td {
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+}
+
+table {
+  text-align: left;
+  position: relative;
+}
+
+table a {
+  text-decoration: none;
+}
+
+thead tr {
+  box-shadow: 0 5px 10px #e1e5ee;
+  position: sticky;
+  top: 0;
+}
+
+thead th {
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+  background: white !important;
+  text-transform:uppercase
+}
+
+.table th, .table td {
+  text-align: center;
+}
+
+.table>:not(:first-child) {
+  border-top: none;
+}
+
+thead tr {
+  z-index: 1 !important;
+}

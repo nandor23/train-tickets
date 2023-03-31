@@ -1,0 +1,56 @@
+.navbar {
+  padding: 0 !important;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  padding-right: 30px;
+}
+
+.navbar-nav a {
+  text-decoration: none !important;
+  color: white !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+}
+
+.navbar-nav li {
+  margin-left: 15px;
+}
+
+.navbar-nav #login-icon {
+  font-size: 22px;
+}
+
+#login-tab-btn, #logout-tab-btn {
+  border-radius: 10px;
+  height: 40px;
+  padding-top: 3px;
+  margin-top: 8px;
+  color: white;
+  outline: none;
+  border: none;
+}
+
+#username-field {
+  margin-bottom: 3px;
+  color: white;
+  font-size: 22px;
+}
+
+
+@media screen and (min-width: 768px) {
+  #login-tab-btn, #logout-tab-btn {
+    background-color: #0d6efd;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #login-tab, #logout-tab {
+    padding-bottom: 10px;
+  }
+
+  #logout-tab-btn {
+    background-color: transparent;
+  }
+}

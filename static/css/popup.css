@@ -1,0 +1,9 @@
+.card {
+  align-items: center;
+  margin-top: 50px;
+  width: 500px;
+}
+
+.card-title {
+  text-align: center;
+}

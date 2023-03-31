@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/index.css">
+  <script src="/js/index.js"></script>
+  <%- include('partials/head.ejs') %>
+  <title>Next Engine</title>
+</head>
+<body>
+  <%- include('partials/navbar.ejs') %>
+
+  <div id="form-container" class="card container p-0">
+    <h1 class="card-title">Search route</h1>
+    <form action="/" method="post" id="guest-form" class="card-body">
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <label for="starting-point">From</label>
+          <input type="text" class="form-control" id="starting-point" name="starting-point"/>
+        </div>
+        <div class="col-sm-6">
+          <label for="destination">To</label>
+            <input type="text" class="form-control" id="destination" name="destination">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <label for="min-price">Min</label>
+          <div class="input-group">
+            <span class="input-group-text">$</span>
+            <input type="number" class="form-control" id="min-price" name="min-price" 
+              min="0" onblur="correctMinPrice()" onchange="correctMinPrice()">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <label for="max-price">Max</label>
+          <div class="input-group">
+            <span class="input-group-text">$</span>
+            <input type="number" class="form-control" id="max-price" name="max-price"
+              min="0" onblur="correctMaxPrice()" onchange="correctMaxPrice()">
+          </div>
+        </div>
+      </div>
+      <% if (errorMessage !== 'undefined') { %>
+        <p id="error-message"><%=errorMessage%></p>
+      <% } %>
+      <hr class="my-4">
+      <div id="search-container">
+        <button type="submit" id="search-button">
+          <div id="search-icon"><i class="fas fa-search"></i></div>
+          <div id="search-text">Search</div>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <% if (data.length) { %>
+  <div class="container" id="container">
+    <div id="table-container" class="table-responsive">
+      <div class="position-relative">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Starting&nbsp;point</th>
+              <th>Destination</th>
+              <th>Day</th>
+              <th>Departure</th>
+              <th>Arrival</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (let i = 0; i < data.length; i++) { %>
+              <tr id="<%= i %>" class='information-row'>
+                <td>
+                  <% if (data[i][0].routeId !== undefined) { %>
+                    <a href="/reservations/<%=data[i][0].routeId%>"><%= data[i][0].routeId %></a>
+                  <% } %> 
+                </td>
+                <td><%= data[i][0].startingPoint %></td>
+                <td><%= data[i][0].destination %></td>
+                <td><%= data[i][0].departureDay %></td>
+                <td><%= data[i][0].departureTime %></td>
+                <td><%= data[i][0].arrivalTime %></td>
+                <td><button class="show-additional-information" onclick="showDetails('<%= JSON.stringify(data[i].slice(1).map((elem) => elem.routeId)) %>' , '<%= i %>')">Details</button></td>
+              </tr>
+              <tr id="<%= i %>-info">
+                <td id="<%= i %>-details" colspan="7" class="additional-information">
+                  <div class="station-container">
+                    <div class="time-container">
+                      <% for (let j = 1; j < data[i].length; j += 1) { %>
+                        <p id="<%= i %>-<%= j %>-departure-time" class="departure-time"></p>
+                        <p id="<%= i %>-<%= j %>-arrival-time" class="arrival-time"></p>
+                      <% } %>
+                    </div>
+                    <div class="vertical-line-container">
+                      <% for (let j = 1; j < data[i].length; j += 1) { %>
+                        <div class="departure-dot"><i class="fa-solid fa-circle"></i></div>
+                        <div class="vertical-line"></div>
+                        <div><i class="fa-solid fa-circle"></i></div>
+                        <% if (j >= 1 && j < data[i].length - 1) { %>
+                          <div class="vertical-line-2"></div>
+                        <% } %>
+                      <% } %>
+                    </div>
+                    <div>
+                      <% for (let j = 1; j < data[i].length; j += 1) { %>
+                          <div class="place-container">
+                            <p id="<%= i %>-<%= j %>-departure-place" class="departure-place"></p>
+                            <div class="info-container">
+                              <div class="route-id"><a href="/reservations/<%=data[i][j].routeId%>">
+                                ID: <span id="<%= i %>-<%= j %>-route-id"></span></a>
+                              </div>
+                              <p><span id="<%= i %>-<%= j %>-train-type"></span> train</p>
+                              <div class="elapsed-time-container">
+                                <i class="fa-regular fa-clock"></i>
+                                <p id="<%= i %>-<%= j %>-elapsed-time" class="elapsed-time"></p>
+                              </div>
+                            </div>
+                            <p id="<%= i %>-<%= j %>-arrival-place" class="arrival-place"></p>
+                          <% if (j < data[i].length - 1) { %>
+                            <div class="info-container-2">
+                              <i class="fa-solid fa-person-walking"></i>
+                              <p class="transfer-text">Transfer</p>
+                            </div>
+                          <% } %>
+                          </div>
+                      <% } %>
+                    </div>
+                    <div class="summary-container">
+                      <div>
+                        <div class="summary-text">
+                          <i class="bi bi-info-circle"></i>
+                          <p>Information<p>
+                        </div>
+                        <p class="total-price">Price: $<%= data[i][0].ticketPrice %></p>
+                        <% if (data[i][0].travelTime.minute < 10) { %>
+                          <p class="total-travel-time">Travel time: <%= data[i][0].travelTime.hour %>:0<%= data[i][0].travelTime.minute %></p>
+                        <% } else { %>
+                          <p class="total-travel-time">Travel time: <%= data[i][0].travelTime.hour %>:<%= data[i][0].travelTime.minute %></p>
+                        <% } %>
+                        <p class="total-transfer">Transfers: <%= data[i].length - 2 %></p>
+                      </div>
+                      <% if (locals.payload) { %>
+                        <button class="buy-ticket" onclick="buyTicket('<%= JSON.stringify(data[i].slice(1).map((elem) => elem.routeId)) %>', '<%= payload.userId %>')">Buy ticket</button>
+                      <% } %>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <% } else { %>
+    <p id="message">No routes to show</p>
+  <% } %>
+  
+</body>
+</html>

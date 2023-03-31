@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/login.css">
+  <script src="/js/login.js"></script>
+  <%- include('partials/head.ejs') %>
+  <title>Next Engine</title>
+</head>
+
+<body>
+  <%- include('partials/navbar.ejs') %>
+
+  <div id="form-container" class="card container justify-content-center">
+    <form action="/login" method="post" onsubmit="return validate();" id="login-form" class="card-body">
+      <h4 class="card-title">Sign in to your account</h4>
+      
+      <div class="form-group row">
+            <div class="col-sm-8">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" onblur="validateUsername(this.value)">
+                <p id="invalid-username" class="invalid-field"></p>
+            </div>
+        </div>
+        <div class="form-group row"> 
+          <div class="col-sm-8">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" onblur="validatePassword(this.value)">
+            <p id="invalid-password" class="invalid-field"></p>
+          </div>
+        </div>
+        <% if (errorMessage !== 'undefined') { %>
+          <p id="error-message"><%=errorMessage%></p>
+        <% } %>
+        <hr class="my-4">
+        <div id="btn-container">
+            <button type="submit" id="sign-in-btn">Sign in</button>
+        </div>
+    </form>
+    <p id="register-text">Don't have an account? 
+      <a href="/registration">Create yours now.</a>
+    </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,146 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+#personal-info label, #personal-info input, #personal-info p {
+    display: flex;
+    margin-left: 20px;
+}
+
+#personal-info:first-child {
+    padding-top: 20px;
+}
+
+#personal-info label {
+    flex-direction: column;
+    margin-top: 12px;
+    margin-bottom: 5px;
+}
+
+#personal-info p {
+    position: relative;
+    color: red;
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+#personal-info input:not(:last-child) {
+    height: 25px;
+}
+
+footer {
+    text-align: center;
+}
+
+#personal-info div {
+    display: flex;
+    flex-direction: row;
+}
+
+#personal-info div label {
+    margin-top: 30px;
+    margin-right: 10px;
+}
+
+#personal-info div select {
+    margin-top: 30px;
+}
+
+#personal-info div input {
+    margin-top: 26px;
+    margin-left: 5px;
+    height: 25px;
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+#personal-info {
+    width: 280px;
+    padding-right: 15px;
+    border-right: 1px solid silver;
+    box-shadow: 10px 10px 5px lightblue;
+}
+
+#info-container {
+    display: flex;
+}
+
+#card-container {
+    display: flex;
+    margin-top: -100px;
+    margin-bottom: 100px;
+}
+
+.card {
+    width: 170px;
+    height: 240px;
+    background-color: green;
+    margin-left: 60px;
+    margin-right: 0px;
+    margin-top: 150px;
+    cursor: pointer;
+}
+
+.card:first-child {
+    margin-left: 120px;
+}
+
+#button-container {
+    margin-top: 30px;
+}
+
+#button-container button {
+    cursor: pointer;
+}
+
+#start-btn {
+    margin-left: 20px;
+    margin-right: 30px;
+    visibility: hidden;
+}
+
+#end-btn {
+    visibility: hidden;
+}
+
+#betting {
+    margin-bottom: -10px;
+}
+
+#game-window {
+    margin-top: -30px;
+    visibility: hidden;
+}
+
+#player-container {
+    margin-top: 30px;
+    width: 800px;
+    height: 100px;
+    font-size: 22px;
+}
+
+#player-name {
+    padding-top: 20px;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+#player-money {
+    margin-top: 10px;
+    padding-left: 20px;
+    margin-right: 100px;
+}
+
+#game-end {
+    color: red;
+    font-size: 26px;
+    text-align: center;
+}
+
+#game-result {
+    width: 300px;
+    margin-left: 280px;
+}

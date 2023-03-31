@@ -1,0 +1,111 @@
+#information-container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border: solid black 2px;
+  width: 310px;
+}
+
+#information-container li {
+  color: green;
+  font-weight: 600;
+}
+
+#information-container li span{
+  font-weight: 600;
+  color: black;
+}
+
+#container {
+  width: 500px;
+  text-align: center;
+  margin-top: 60px;
+  border: none;
+}
+
+#submit-message {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+#form-container {
+  width: 500px;
+  margin-bottom: 30px;
+}
+
+#form-container h1 {
+  padding-top: 20px;
+  text-align: center;
+  font-size: 34px;
+  margin-bottom: -20px;
+}
+
+#user-form .form-group {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#user-form .form-group:first-child {
+  padding-top: 30px;
+}
+
+#user-form label {
+  font-size: 20px;
+  padding-bottom: 4px;
+}
+
+#search-button {
+  padding-top: 10px;
+  margin-top: -10px;
+  padding-left: 35px;
+  display: flex;
+  height: 50px;
+  width: 150px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+#search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.invalid-field {
+  font-size: 16px;
+  color: #ff3860;
+}
+
+.reservation-delete {
+  border: none;
+  background-color: #ffcdd2;
+  color: #c62828;
+  border-radius: 8px;
+  height: 40px;
+  width: 100px;
+  font-size: 18px;
+}
+
+.reservation-delete:hover {
+  box-shadow: 0 0 10px #c62828;
+}
+
+#delete-message {
+  font-size: 24px;
+}
+
+@media screen and (max-width: 576px) {
+  #form-container {
+      width: 100%;
+  }
+
+  #container {
+    width: 100%;
+  }
+}

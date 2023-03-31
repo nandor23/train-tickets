@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reservations</title>
+  <link rel="stylesheet" href="/css/reservations.css">
+  <script src="/js/reservations.js"></script>
+  <%- include('partials/head.ejs') %>
+</head>
+<body>
+  <%- include('partials/navbar.ejs') %>
+  
+  <div class="card container" id="information-container">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><span>Route ID: </span><%= route.routeId%></li>
+      <li class="list-group-item"><span>Starting point: </span><%= route.startingPoint%></li>
+      <li class="list-group-item"><span>Destination: </span><%= route.destination%></li>
+      <li class="list-group-item"><span>Day: </span><%= route.departureDay%></li>
+      <li class="list-group-item"><span>Time: </span><%= route.departureTime%></li>
+      <li class="list-group-item"><span>Price: </span><%= route.ticketPrice%>$</li>
+      <li class="list-group-item"><span>Train type: </span><%= route.trainType%></li>
+    </ul>
+  </div>
+  <hr class="my-4">
+
+  <% if (message !== 'undefined') { %>
+    <p id="submit-message"><%= message %></p>  
+  <% } %>
+
+  <div id="form-container" class="card container p-0">
+      <h1 class="card-title">Book your ticket</h1>
+      <form action="/reservations/<%= route.routeId%>" method="post" id="user-form" class="card-body">
+          <hr class="my-4">
+          <div id="search-container">
+              <button type="submit" id="search-button">
+                  <div id="search-text">Book&nbsp;now</div>
+              </button>
+          </div>
+    </form>
+  </div>
+  <hr class="my-4">
+  <% if (data.length) { %>
+    <div class="card container" id="container">
+      <h2 id="title">Reservations</h2>
+        <div id="table-container" class="table-responsive">
+          <div class="position-relative">
+            <table class="table table-hover">
+              <thead class="bg-light">
+                <tr>
+                  <th>Username</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (let i = 0; i < data.length; i++) { %>
+                  <% if (payload.username == data[i].username) { %>
+                    <tr id="<%= data[i].userId %>-reservation-delete">
+                      <td><%= data[i].username %></td>
+                      <td>
+                        <button onclick="deleteReservation('<%= data[i].userId %>','<%= route.routeId%>')" class="reservation-delete">Delete</button>
+                      </td>
+                    </tr>
+                  <% } else { %>
+                    <tr>
+                      <td><%= data[i].username %></td>
+                      <td></td>
+                    </tr>
+                  <% } %>
+                <% } %>
+              </tbody>
+            </table>
+        </div>
+    </div>
+    <p id="delete-message"></p>
+  <% } else { %>
+    <p id="message">No reservations to show</p>
+  <% } %>
+</div>
+
+</body>
+</html>
