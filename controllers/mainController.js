@@ -135,9 +135,11 @@ export const fillTable = async (req, res) => {
 
     // determine which tickets are already bought
     const payload = jwtDecoder.decodeJWTToken(req);
-    let reservations = await reservationsDao.getReservationsForUser(payload.userId);
-    determineBoughtTickets(routes, reservations);
 
+    if (payload) {
+      let reservations = await reservationsDao.getReservationsForUser(payload.userId);
+      determineBoughtTickets(routes, reservations);
+    }
     res.render('index', { data: routes, errorMessage: undefined });
   } catch (err) {
     res.status(500).render('error', { message: err });
@@ -179,8 +181,10 @@ export const filterTable = async (req, res) => {
 
     // determine which tickets are already bought
     const payload = jwtDecoder.decodeJWTToken(req);
-    let reservations = await reservationsDao.getReservationsForUser(payload.userId);
-    determineBoughtTickets(routes, reservations);
+    if (payload) {
+      let reservations = await reservationsDao.getReservationsForUser(payload.userId);
+      determineBoughtTickets(routes, reservations);
+    }
     res.render('index', { data: routes, errorMessage: undefined });
   } catch (err) {
     res.status(500).render('error', { message: err });
