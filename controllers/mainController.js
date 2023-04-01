@@ -2,6 +2,9 @@ import Ajv from 'ajv';
 import autoBind from 'auto-bind';
 import searchSchema from '../models/search.js';
 import * as routesDao from '../database/routes.js';
+import * as reservationsDao from '../database/reservations.js';
+import * as jwtDecoder from '../utils/jwtDecoder.js';
+
 
 const ajv = new Ajv();
 const validateSearch = ajv.compile(searchSchema);
@@ -106,12 +109,35 @@ function summarizeRoutes(routes) {
   });
 }
 
+function determineBoughtTickets(routes, reservations) {
+  for (let route of routes) {
+    let isBought = true;
+    for (let i = 1; i < route.length; ++i) {
+        if (!reservations.includes(route[i].routeId)) {
+        isBought = false;
+        break;
+      }
+    }
+    if (isBought) {
+      route[0].bought = true;
+    } else {
+      route[0].bought = false;
+    }
+  }
+}
+
 // fooldalon levo tablat feltolti
-export const fillTable = async (_req, res) => {
+export const fillTable = async (req, res) => {
   try {
     let routes = await routesDao.getRoutes();
     routes = routes.map((elem) => [elem]);
     summarizeRoutes(routes);
+
+    // determine which tickets are already bought
+    const payload = jwtDecoder.decodeJWTToken(req);
+    let reservations = await reservationsDao.getReservationsForUser(payload.userId);
+    determineBoughtTickets(routes, reservations);
+
     res.render('index', { data: routes, errorMessage: undefined });
   } catch (err) {
     res.status(500).render('error', { message: err });
@@ -150,6 +176,11 @@ export const filterTable = async (req, res) => {
       routes = a.findPaths(search.startingPoint, search.destination, 3);
     }
     summarizeRoutes(routes);
+
+    // determine which tickets are already bought
+    const payload = jwtDecoder.decodeJWTToken(req);
+    let reservations = await reservationsDao.getReservationsForUser(payload.userId);
+    determineBoughtTickets(routes, reservations);
     res.render('index', { data: routes, errorMessage: undefined });
   } catch (err) {
     res.status(500).render('error', { message: err });

@@ -41,3 +41,17 @@ export const deleteReservation = async (userId, routeId) => {
     return err;
   }
 };
+
+export const getReservationsForUser = async (userId) => {
+  try {
+    const results = await dbConnection.executeQuery(`SELECT routeId FROM reservations 
+      WHERE userId = ?`, [userId]);
+    const values = [];
+    for (let result of results) {
+      values.push(result.routeId);
+    }
+    return values;
+  } catch (err) {
+    return err;
+  }
+}

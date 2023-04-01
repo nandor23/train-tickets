@@ -85,11 +85,25 @@ function showDetails(stringOfIds, id) {
     })));
 }
 
-function buyTicket(stringOfIds, userId) {
+function buyTicket(stringOfIds, userId, elemId) {
+  const element = document.getElementById(elemId);
   const idArray = JSON.parse(stringOfIds);
-  idArray.forEach((routeId) => {
-    fetch(`/api/reservations/${userId}-${routeId}`, {
-      method: 'POST',
+
+  if (element.className === "buy-ticket") {
+    idArray.forEach((routeId) => {
+      fetch(`/api/reservations/${userId}-${routeId}`, {
+        method: 'POST',
+      });
     });
-  });
+    element.className = "refund-ticket";
+    element.innerText = "Refund";
+  } else {
+    idArray.forEach((routeId) => {
+      fetch(`/api/reservations/${userId}-${routeId}`, {
+        method: 'DELETE',
+      });
+    });
+    element.className = "buy-ticket";
+    element.innerText = "Buy ticket";
+  }
 }

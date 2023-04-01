@@ -275,5 +275,16 @@ tbody li {
     margin-left: 60px;
     margin-top: 50px;
     width: 120px;
+}
 
+.refund-ticket {
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #f44336;
+    border-radius: 10px;
+    height: 50px;
+    margin-left: 60px;
+    margin-top: 50px;
+    width: 120px;
 }
