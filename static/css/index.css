@@ -100,8 +100,20 @@ tbody li {
     font-size: 18px;
 }
 
+.delete-route {
+    border: none;
+    background-color: #fbabbb;
+    color: #ea0734;
+    border-radius: 8px;
+    height: 40px;
+    width: 120px;
+    font-size: 18px;
+    margin-left: -10px;
+    margin-right: 10px;
+}
+
 #container {
-    max-width: 1100px;
+    max-width: 1200px;
 }
 
 .additional-information {
@@ -118,6 +130,10 @@ tbody li {
 
 .show-additional-information:hover {
     box-shadow: 0 0 10px #028002;
+}
+
+.delete-route:hover {
+    box-shadow: 0 0 10px #ea0734;
 }
 
 @media screen and (max-width: 576px) {

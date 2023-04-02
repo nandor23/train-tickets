@@ -68,6 +68,9 @@
               <th>Departure</th>
               <th>Arrival</th>
               <th></th>
+              <% if (locals.payload && locals.payload.role === 'admin') { %>
+                <th></th>
+              <% } %>
             </tr>
           </thead>
           <tbody>
@@ -84,6 +87,11 @@
                 <td><%= data[i][0].departureTime %></td>
                 <td><%= data[i][0].arrivalTime %></td>
                 <td><button class="show-additional-information" onclick="showDetails('<%= JSON.stringify(data[i].slice(1).map((elem) => elem.routeId)) %>' , '<%= i %>')">Details</button></td>
+                <% if (locals.payload && locals.payload.role === 'admin' && data[i].length == 2) { %>
+                  <td><button class="delete-route" onclick="deleteRoute('<%= JSON.stringify(data[i].slice(1).map((elem) => elem.routeId)) %>', '<%= i %>')">Delete</button></td>
+                <% } else { %>
+                  <td classs="delete-route"></td>
+                <% } %>
               </tr>
               <tr id="<%= i %>-info">
                 <td id="<%= i %>-details" colspan="7" class="additional-information">

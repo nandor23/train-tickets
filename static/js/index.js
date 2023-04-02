@@ -97,7 +97,7 @@ function showSingleDetail(routeId, id) {
   let i = 1;
   routeId = JSON.parse(routeId)
 
-  const fetchData = async () => await fetch(`/api/routes/${routeId}`)
+  fetch(`/api/routes/${routeId}`)
     .then((response) => response.json())
     .then((route) => {
       if (row.style.display === 'table-cell') {
@@ -119,7 +119,6 @@ function showSingleDetail(routeId, id) {
         document.getElementById(`${id}-elapsed-time`).innerText = '';
       }
     });
-  fetchData();
 }
 
 function buyTickets(stringOfIds, userId, elemId) {
@@ -153,4 +152,14 @@ function deleteSingleTicket(routeId, userId, elemId) {
   fetch(`/api/reservations/${userId}-${routeId}`, {
     method: 'DELETE',
   });
+}
+
+function deleteRoute(routeId, elemId) {
+  routeId = JSON.parse(routeId)[0];
+
+  fetch(`/api/routes/${routeId}`, {
+    method: 'DELETE',
+  });
+  document.getElementById(elemId).remove();
+  document.getElementById(`${elemId}-info`).remove();
 }

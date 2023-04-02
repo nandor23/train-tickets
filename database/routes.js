@@ -79,3 +79,15 @@ export const getRouteInformationById = async (routeId) => {
     return err;
   }
 };
+
+export const deleteRoute = async (routeId) => {
+  try {
+    await dbConnection.executeQuery(`DELETE FROM reservations 
+      WHERE routeId = ?`, [routeId]);
+    await dbConnection.executeQuery(`DELETE FROM routes
+      WHERE routeId = ?`, [routeId]);
+    return `Successfully deleted route with ID ${routeId}`;
+  } catch (err) {
+    return err;
+  }
+}
