@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/index.css">
+  <script src="/js/index.js"></script>
+  <%- include('partials/head.ejs') %>
+  <title>Next Engine</title>
+</head>
+<body>
+  <%- include('partials/navbar.ejs') %>
+  <% if (data.length) { %>
+    <div class="container" id="container" style="margin-top: 5%;">
+      <div id="table-container" class="table-responsive">
+        <div class="position-relative">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Starting&nbsp;point</th>
+                <th>Destination</th>
+                <th>Day</th>
+                <th>Departure</th>
+                <th>Arrival</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for (let i = 0; i < data.length; i++) { %>
+                <tr id="<%= i %>" class='information-row'>
+                  <td>
+                      <a href="/reservations/<%=data[i].routeId%>"><%= data[i].routeId %></a>
+                  </td>
+                  <td><%= data[i].startingPoint %></td>
+                  <td><%= data[i].destination %></td>
+                  <td><%= data[i].departureDay %></td>
+                  <td><%= data[i].departureTime %></td>
+                  <td><%= data[i].arrivalTime %></td>
+                  <td><button class="show-additional-information" onclick="showSingleDetail('<%= JSON.stringify(data[i].routeId) %>' , '<%= i %>')">Details</button></td>
+                </tr>
+                <tr id="<%= i %>-info">
+                  <td id="<%= i %>-details" colspan="7" class="additional-information">
+                    <div class="station-container">
+                      <div class="time-container">
+                        <p id="<%= i %>-departure-time" class="departure-time"></p>
+                        <p id="<%= i %>-arrival-time" class="arrival-time"></p>
+                      </div>
+                      <div class="vertical-line-container">
+                          <div class="departure-dot"><i class="fa-solid fa-circle"></i></div>
+                          <div class="vertical-line"></div>
+                          <div><i class="fa-solid fa-circle"></i></div>
+                      </div>
+                      <div>
+                        <div class="place-container">
+                          <p id="<%= i %>-departure-place" class="departure-place"></p>
+                          <div class="info-container">
+                            <div class="route-id"><a href="/reservations/<%=data[i].routeId%>">
+                              ID: <span id="<%= i %>-route-id"></span></a>
+                            </div>
+                            <p><span id="<%= i %>-train-type"></span> train</p>
+                            <div class="elapsed-time-container">
+                              <i class="fa-regular fa-clock"></i>
+                              <p id="<%= i %>-elapsed-time" class="elapsed-time"></p>
+                            </div>
+                          </div>
+                          <p id="<%= i %>-arrival-place" class="arrival-place"></p>
+                        </div>
+                      </div>
+                      <div class="summary-container" style="height: 130px;">
+                        <div>
+                          <div class="summary-text">
+                            <i class="bi bi-info-circle"></i>
+                            <p>Information<p>
+                          </div>
+                          <p class="total-price">Price: $<%= data[i].ticketPrice %></p>
+                          <% if (data[i].travelTime.minute < 10) { %>
+                            <p class="total-travel-time">Travel time: <%= data[i].travelTime.hour %>:0<%= data[i].travelTime.minute %></p>
+                          <% } else { %>
+                            <p class="total-travel-time">Travel time: <%= data[i].travelTime.hour %>:<%= data[i].travelTime.minute %></p>
+                          <% } %>
+                        </div>
+                          <button id="<%= i %>-button" class="refund-ticket"
+                            onclick="deleteSingleTicket('<%= JSON.stringify(data[i].routeId) %>', '<%= payload.userId %>', '<%= i %>');"
+                          >
+                            Refund
+                          </button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <% } else { %>
+      <p id="message" style="margin-top: 5%;">You have not booked any tickets yet</p>
+    <% } %>
+</body>
+
+</html>

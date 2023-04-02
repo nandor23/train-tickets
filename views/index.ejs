@@ -144,7 +144,7 @@
                       </div>
                       <% if (locals.payload) { %>
                         <button id="<%= i %>-button" class="<%= data[i][0].bought ? 'refund-ticket' : 'buy-ticket' %>"
-                          onclick="buyTicket('<%= JSON.stringify(data[i].slice(1).map((elem) => elem.routeId)) %>', '<%= payload.userId %>', '<%= i %>-button');"
+                          onclick="buyTickets('<%= JSON.stringify(data[i].slice(1).map((elem) => elem.routeId)) %>', '<%= payload.userId %>', '<%= i %>-button');"
                         >
                           <% if(data[i][0].bought) { %>
                             Refund

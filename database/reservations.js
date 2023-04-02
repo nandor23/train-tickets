@@ -42,7 +42,7 @@ export const deleteReservation = async (userId, routeId) => {
   }
 };
 
-export const getReservationsForUser = async (userId) => {
+export const getReservationIDsForUser = async (userId) => {
   try {
     const results = await dbConnection.executeQuery(`SELECT routeId FROM reservations 
       WHERE userId = ?`, [userId]);
@@ -51,6 +51,16 @@ export const getReservationsForUser = async (userId) => {
       values.push(result.routeId);
     }
     return values;
+  } catch (err) {
+    return err;
+  }
+}
+
+export const getReservationsForUser = async (userId) => {
+  try {
+    const results = await dbConnection.executeQuery(`SELECT *  FROM reservations r
+      JOIN routes r2 ON r.routeId = r2.routeId WHERE userId = ? `, [userId]);
+    return results;
   } catch (err) {
     return err;
   }

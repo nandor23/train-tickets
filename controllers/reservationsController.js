@@ -65,3 +65,27 @@ export const submitBookingForm = async (req, res) => {
     res.status(500).render('error', { message: err });
   }
 };
+
+export const listReservationsForUser = async (req, res) => {
+  try {
+    const { userId } = res.locals.payload;
+    const reservations = await reservationsDao.getReservationsForUser(userId);
+    for (let route of reservations) {
+      const travelTime = { hour: 0, minute: 0 };
+      const depTime = route.departureTime.split(':').map(Number);
+      const arrTime = route.arrivalTime.split(':').map(Number);
+      travelTime.hour += arrTime[0] - depTime[0];
+      travelTime.minute += arrTime[1] - depTime[1];
+      if (travelTime.minute < 0) {
+        travelTime.hour -= 1;
+        travelTime.minute += 60;
+      }
+      route.travelTime = travelTime;
+    }
+    res.render('user_reservations', {
+      data: reservations,
+    });
+  } catch (err) {
+    res.status(500).render('error', { message: err });
+  }
+};
