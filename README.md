@@ -3,14 +3,16 @@ With the help of the application, users can reserve train tickets for a specitif
 
 The application has authentication and authorization. There are 2 roles: `guest`, `user`, and `admin`.
 
-**guest role:**  
+### Roles
+
+**guest:**  
   - view and search routes
 
-**user role:** 
+**user:** 
   - view and search routes
   - see other users, who reserved tickets for a route
   - reserve and refund tickets 
   - watch his reservations
                
-**admin role:**
+**admin:**
      
