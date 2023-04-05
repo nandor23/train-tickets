@@ -12,7 +12,8 @@ The application has authentication and authorization. There are 2 roles: `guest`
   - view and search routes
   - see other users, who reserved tickets for a route
   - reserve and refund tickets 
-  - watch his reservations
+  - see his reservations
                
 **admin:**
-     
+  - can do the same as the user
+  - add & delete routes
