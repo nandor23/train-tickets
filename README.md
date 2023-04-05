@@ -17,3 +17,9 @@ The application has authentication and authorization. There are 2 roles: `guest`
 **admin:**
   - can do the same as the user
   - add & delete routes
+  
+  
+  ## A few images of the website
+  
+  
+  
