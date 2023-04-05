@@ -21,7 +21,7 @@ The application has authentication and authorization. There are 2 roles: `guest`
   
   ## A few images of the website
   
-<img src="https://github.com/nandor23/train-tickets/blob/main/image_1.png alt="game" width="600"/>
+<img src="https://github.com/nandor23/train-tickets/blob/main/image_1.png alt="image_1" width="600"/>
 <img src="https://github.com/nandor23/doubly-linked-list/blob/main/card_game.png" alt="game" width="600"/>
 <img src="https://github.com/nandor23/doubly-linked-list/blob/main/card_game.png" alt="game" width="600"/>
 
