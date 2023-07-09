@@ -17,7 +17,21 @@ The application has authentication and authorization. There are 2 roles: `guest`
 **admin:**
   - can do the same as the user
   - add & delete routes
-  
+
+## Setup
+
+1. Create the databasse user by executing the follwing lines:
+
+   ```sql
+   sudo mariadb -u root -p
+   CREATE USER 'nandor'@'localhost' IDENTIFIED BY '2001';
+   GRANT ALL PRIVILEGES ON train_db.* TO 'nandor'@'localhost' IDENTIFIED BY '2001';
+   FLUSH PRIVILEGES;
+   ```
+2. Run the `script_create_db.sql` script from the project folder and enter the password: `2001`
+```sql
+/usr/bin/mariadb -u nandor -p < script_create_db.sql
+```
   
   ## A few images of the website
   
