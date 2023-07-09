@@ -1,8 +1,5 @@
 -- DROP DATABASE IF EXISTS train_db;
 
--- CREATE USER IF NOT EXISTS 'user123'@'localhost' IDENTIFIED BY 'password123';
--- GRANT ALL PRIVILEGES ON train_db.* TO 'user123'@'localhost';
-
 CREATE DATABASE IF NOT EXISTS train_db;
 USE train_db;
 
@@ -34,9 +31,6 @@ CREATE TABLE IF NOT EXISTS reservations (
     CONSTRAINT FK_reservations2 FOREIGN KEY (routeId) REFERENCES routes(routeId)
 );
 
-INSERT INTO users VALUES('F2e09aWnaq', 'admin100', '$2b$10$270g2vigo4QxxL4Oy2OCSeoQIMor6vm8SItdaOepneg4uS3gDLdMm', 'admin');
-INSERT INTO users VALUES('l_3SeF1lDx', 'user100', '$2b$10$9mGb7Ih7dLF3xwJDIBLLGOWmSuJ96U8a53d4rRlbzw.S/bSz/xE.y', 'user');
-INSERT INTO users VALUES('EYeaQyUEtB', 'user101', '$2b$10$MS8G1kwWYccaapFmhpnQuu/tlgAC0oWz5oy79c1rDigJrmMopighi', 'user');
 
 INSERT INTO routes VALUES('m3v7P5', 'Chicago', 'Houston', 'Friday', '05:38', '11:32', 54, 'Passenger');
 INSERT INTO routes VALUES('u8N1s3', 'Seattle', 'New York', 'Saturday', '13:38', '21:06', 30, 'High-Speed');
